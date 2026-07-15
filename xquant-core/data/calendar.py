@@ -1,17 +1,19 @@
 import pandas as pd
 import numpy as np
 from typing import List, Optional, Union
+
 try:
     import pandas_market_calendars as mcal
 except ImportError:
     mcal = None
 
+
 class TradingCalendar:
     """
     Handles trading days, market holidays, and resampling logic.
     """
-    
-    def __init__(self, exchange: str = 'NYSE'):
+
+    def __init__(self, exchange: str = "NYSE"):
         self.exchange_name = exchange
         if mcal:
             self.calendar = mcal.get_calendar(exchange)
@@ -44,8 +46,8 @@ class TradingCalendar:
             schedule = self.calendar.schedule(start_date=date, end_date=date)
             if not schedule.empty:
                 return {
-                    'market_open': schedule.iloc[0]['market_open'],
-                    'market_close': schedule.iloc[0]['market_close']
+                    "market_open": schedule.iloc[0]["market_open"],
+                    "market_close": schedule.iloc[0]["market_close"],
                 }
         return None
 
@@ -54,4 +56,4 @@ class TradingCalendar:
         """
         Resample data to business days, handling missing values.
         """
-        return df.resample('B').ffill()
+        return df.resample("B").ffill()

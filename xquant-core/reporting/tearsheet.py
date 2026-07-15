@@ -3,25 +3,26 @@ from ..risk.metrics import get_performance_metrics
 from .plots import plot_equity_curve, plot_drawdown
 import json
 
+
 class Tearsheet:
     """
     Generates a full performance tearsheet for a backtest result.
     """
-    
+
     def __init__(self, results: pd.DataFrame):
         self.results = results
         self.metrics = get_performance_metrics(results)
-        
+
     def summary(self):
         """
         Print a text summary of the metrics.
         """
-        print("\n" + "="*40)
+        print("\n" + "=" * 40)
         print("       XQUANT PERFORMANCE TEARSHEET")
-        print("="*40)
+        print("=" * 40)
         for key, value in self.metrics.items():
             print(f"{key:25}: {value:>12.4f}")
-        print("="*40)
+        print("=" * 40)
 
     def generate_html(self, filename: str = "tearsheet.html"):
         """

@@ -3,4 +3,4 @@ from .yfinance import YFinanceAdapter
 from .ccxt import CCXTAdapter
 from .forex import ForexAdapter
 
-__all__ = ['BaseAdapter', 'YFinanceAdapter', 'CCXTAdapter', 'ForexAdapter']
+__all__ = ["BaseAdapter", "YFinanceAdapter", "CCXTAdapter", "ForexAdapter"]
